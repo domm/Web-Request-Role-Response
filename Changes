@@ -1,0 +1,6 @@
+Revision history for Web::Request::Role::Response
+
+1.000   
+    - added tests & docs
+    - extracted from Validad::Tools
+

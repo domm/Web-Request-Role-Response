@@ -50,18 +50,18 @@ my $handler = builder {
 
         # file_download
         elsif ( $path eq '/download' ) {
-            $res = $req->new_file_download_response( 'text/csv', 'a;b;c',
+            $res = $req->file_download_response( 'text/csv', 'a;b;c',
                 'alphabet.csv' );
         }
 
         # no_content
         elsif ( $path eq '/no-content' ) {
-            $res = $req->new_no_content_response;
+            $res = $req->no_content_response;
         }
 
         # transparent_gif
         elsif ( $path eq '/pixel' ) {
-            $res = $req->new_transparent_gif_response;
+            $res = $req->transparent_gif_response;
         }
 
         return $res->finalize;

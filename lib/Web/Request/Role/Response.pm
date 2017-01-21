@@ -26,7 +26,7 @@ sub permanent_redirect {
     return $self->redirect( $target, 301 );
 }
 
-sub new_file_download_response {    # TODO make it stream?
+sub file_download_response {    # TODO make it stream?
     my ( $self, $content_type, $data, $filename ) = @_;
 
     return Web::Response->new(
@@ -39,7 +39,7 @@ sub new_file_download_response {    # TODO make it stream?
     );
 }
 
-sub new_no_content_response {
+sub no_content_response {
     my $self = shift;
 
     return $self->new_response( status => 204, );
@@ -49,7 +49,7 @@ my $transparent_gif = pack( 'H*',
     '47494638396101000100800000000000ffffff21f90401000000002c000000000100010000020144003b'
 );
 
-sub new_transparent_gif_response {
+sub transparent_gif_response {
     my $self = shift;
 
     # cannot use $self->new_reponse here, because this would reuse the
@@ -87,13 +87,13 @@ sub new_transparent_gif_response {
   $req->permanent_redirect('/foo');
 
   # return 204 no content
-  $req->new_no_content_response;
+  $req->no_content_response;
 
   # return a transparent 1x1 gif (eg as a tracking pixle)
-  $req->new_transparent_gif_response;
+  $req->transparent_gif_response;
 
   # file download
-  $req->new_file_download_response( 'text/csv', $data, 'your_export.csv' );
+  $req->file_download_response( 'text/csv', $data, 'your_export.csv' );
 
 =head1 DESCRIPTION
 
@@ -128,23 +128,23 @@ smart to use one that makes sense in a redirecting context...
 Similar to C<redirect>, but will issue a permanent redirect (who would
 have thought!) using HTTP status code C<301>.
 
-=head3 new_file_download_response
+=head3 file_download_response
 
-  $req->new_file_download_response( $content-type, $data, $filename );
+  $req->file_download_response( $content-type, $data, $filename );
 
 Generate a "Download-File" response. Useful if your app returns a
 CSV/Spreadsheet/MP3 etc. You have to provide the correct content-type,
 the data in the correct encoding and a meaningful filename.
 
-=head3 new_no_content_response
+=head3 no_content_response
 
-  $req->new_no_content_response
+  $req->no_content_response
 
 Returns C<2014 No Content>.
 
-=head3 new_transparent_gif_response
+=head3 transparent_gif_response
 
-  $req->new_transparent_gif_response
+  $req->transparent_gif_response
 
 Returns a transparent 1x1 pixle GIF. Useful as the response of a
 tracking URL.

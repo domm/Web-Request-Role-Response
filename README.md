@@ -4,7 +4,7 @@ Web::Request::Role::Response - Generate various HTTP responses from a Web::Reque
 
 # VERSION
 
-version 1.001
+version 1.002
 
 # SYNOPSIS
 

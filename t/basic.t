@@ -47,6 +47,9 @@ my $handler = builder {
         elsif ( $path eq '/redirect/permanent' ) {
             $res = $req->permanent_redirect( '/gone',  );
         }
+        elsif ( $path eq '/redirect/URI' ) {
+            $res = $req->redirect( URI->new('http://example.com') );
+        }
 
         # file_download
         elsif ( $path eq '/download' ) {
@@ -102,19 +105,24 @@ test_psgi(
                 is( $res->code,               301,     'status 301' );
                 is( $res->header('Location'), '/gone', 'Location' );
             };
+            subtest 'redirect URI' => sub {
+                my $res = $cb->( GET "http://localhost/redirect/URI" );
+                is( $res->code,               302,     'status 302' );
+                is( $res->header('Location'), 'http://example.com', 'Location' );
+            };
         };
 
-            subtest 'file_download csv' => sub {
-                my $res = $cb->( GET "http://localhost/download" );
-                is( $res->code, 200, 'status 200' );
+        subtest 'file_download csv' => sub {
+            my $res = $cb->( GET "http://localhost/download" );
+            is( $res->code, 200, 'status 200' );
 
-                is( $res->content_type, 'text/csv', 'Content-Type' );
-                my $dispo = $res->header('content-disposition');
-                like( $dispo, qr/^attachment;/, 'disposition: attachment' );
-                like( $dispo, qr/filename=alphabet.csv/,
-                    'disposition: filename' );
-                is( $res->content, 'a;b;c', 'content' );
-            };
+            is( $res->content_type, 'text/csv', 'Content-Type' );
+            my $dispo = $res->header('content-disposition');
+            like( $dispo, qr/^attachment;/, 'disposition: attachment' );
+            like( $dispo, qr/filename=alphabet.csv/,
+                'disposition: filename' );
+            is( $res->content, 'a;b;c', 'content' );
+        };
 
         subtest 'no-content' => sub {
             my $res = $cb->( GET "http://localhost/no-content" );

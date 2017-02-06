@@ -11,7 +11,7 @@ use Plack::Response;
 sub redirect {
     my ( $self, $target, $status ) = @_;
 
-    if ( ref($target) ) {
+    if ( ref($target) eq 'HASH' ) {
         $target = $self->uri_for($target);
     }
     my $res = $self->new_response();

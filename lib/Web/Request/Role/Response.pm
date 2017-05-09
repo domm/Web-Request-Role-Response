@@ -2,11 +2,11 @@ package Web::Request::Role::Response;
 
 # ABSTRACT: Generate various HTTP responses from a Web::Request
 
-our $VERSION = '1.002';
+our $VERSION = '1.003';
 
 use 5.010;
 use Moose::Role;
-use Plack::Response;
+use Web::Response;
 
 sub redirect {
     my ( $self, $target, $status ) = @_;

@@ -140,7 +140,7 @@ the data in the correct encoding and a meaningful filename.
 
   $req->no_content_response
 
-Returns C<2014 No Content>.
+Returns C<204 No Content>.
 
 =head3 transparent_gif_response
 

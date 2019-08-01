@@ -4,7 +4,7 @@ Web::Request::Role::Response - Generate various HTTP responses from a Web::Reque
 
 # VERSION
 
-version 1.004
+version 1.005
 
 # SYNOPSIS
 
@@ -84,7 +84,7 @@ Returns `204 No Content`.
 
     $req->transparent_gif_response
 
-Returns a transparent 1x1 pixle GIF. Useful as the response of a
+Returns a transparent 1x1 pixel GIF. Useful as the response of a
 tracking URL.
 
 # THANKS

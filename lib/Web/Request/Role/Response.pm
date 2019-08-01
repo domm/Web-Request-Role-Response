@@ -146,7 +146,7 @@ Returns C<204 No Content>.
 
   $req->transparent_gif_response
 
-Returns a transparent 1x1 pixle GIF. Useful as the response of a
+Returns a transparent 1x1 pixel GIF. Useful as the response of a
 tracking URL.
 
 =head1 THANKS

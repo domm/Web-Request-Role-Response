@@ -4,7 +4,7 @@ Web::Request::Role::Response - Generate various HTTP responses from a Web::Reque
 
 # VERSION
 
-version 1.002
+version 1.004
 
 # SYNOPSIS
 
@@ -78,7 +78,7 @@ the data in the correct encoding and a meaningful filename.
 
     $req->no_content_response
 
-Returns `2014 No Content`.
+Returns `204 No Content`.
 
 ### transparent\_gif\_response
 
@@ -99,7 +99,7 @@ Thomas Klausner <domm@cpan.org>
 
 # COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2017 by Thomas Klausner.
+This software is copyright (c) 2017 - 2019 by Thomas Klausner.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

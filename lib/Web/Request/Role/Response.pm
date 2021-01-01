@@ -2,7 +2,7 @@ package Web::Request::Role::Response;
 
 # ABSTRACT: Generate various HTTP responses from a Web::Request
 
-our $VERSION = '1.005';
+# VERSION
 
 use 5.010;
 use Moose::Role;

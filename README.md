@@ -4,7 +4,7 @@ Web::Request::Role::Response - Generate various HTTP responses from a Web::Reque
 
 # VERSION
 
-version 1.005
+version 1.006
 
 # SYNOPSIS
 
@@ -35,9 +35,9 @@ version 1.005
 
 # DESCRIPTION
 
-`Web::Request::Role::JSON` provides a few methods that make generating HTTP responses easier when using [Web::Request](https://metacpan.org/pod/Web::Request).
+`Web::Request::Role::JSON` provides a few methods that make generating HTTP responses easier when using [Web::Request](https://metacpan.org/pod/Web%3A%3ARequest).
 
-Please note that all methods return a [Web::Response](https://metacpan.org/pod/Web::Response) object.
+Please note that all methods return a [Web::Response](https://metacpan.org/pod/Web%3A%3AResponse) object.
 Depending on the framework you use (or lack thereof), you might have
 to call `finalize` on the response object to turn it into a valid
 PSGI response.
@@ -95,11 +95,11 @@ Thanks to
 
 # AUTHOR
 
-Thomas Klausner <domm@cpan.org>
+Thomas Klausner <domm@plix.at>
 
 # COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2017 - 2019 by Thomas Klausner.
+This software is copyright (c) 2017 - 2021 by Thomas Klausner.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

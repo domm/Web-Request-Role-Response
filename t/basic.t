@@ -137,7 +137,7 @@ test_psgi(
             is( $res->content_length, 42,          'content-length' );
             is( unpack( 'H*', $res->content ),
                 '47494638396101000100800000000000ffffff21f90401000000002c000000000100010000020144003b',
-                'payload: tranparent pixle'
+                'payload: transparent pixel'
             );
         };
     }

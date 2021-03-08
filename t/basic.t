@@ -29,44 +29,27 @@ my $handler = builder {
         my $req  = $req_class->name->new_from_env($env);
         my $path = $env->{PATH_INFO};
 
-        my $res;
+        my %dispatch = (
+            # redirect
+            '/redirect'           => [ redirect => '/new/location' ],
+            '/redirect/absolute'  => [ redirect => 'http://example.com' ],
+            '/redirect/uri-for'   => [ redirect => { controller => 'foo',
+                                                     action     => 'bar' } ],
+            '/redirect/307'       => [ redirect => '/we-love-specs', 307 ],
+            '/redirect/permanent' => [ permanent_redirect => '/gone' ],
+            '/redirect/URI'       => [ redirect =>
+                                       URI->new('http://example.com') ],
+            # file_download
+            '/download'           => [ file_download_response =>
+                                       'text/csv', 'a;b;c', 'alphabet.csv' ],
+            # no_content
+            '/no-content'         => [ 'no_content_response' ],
 
-        # redirect
-        if ( $path eq '/redirect' ) {
-            $res = $req->redirect('/new/location');
-        }
-        elsif ( $path eq '/redirect/absolute' ) {
-            $res = $req->redirect('http://example.com');
-        }
-        elsif ( $path eq '/redirect/uri-for' ) {
-            $res = $req->redirect( { controller => 'foo', action => 'bar' } );
-        }
-        elsif ( $path eq '/redirect/307' ) {
-            $res = $req->redirect( '/we-love-specs', 307 );
-        }
-        elsif ( $path eq '/redirect/permanent' ) {
-            $res = $req->permanent_redirect( '/gone',  );
-        }
-        elsif ( $path eq '/redirect/URI' ) {
-            $res = $req->redirect( URI->new('http://example.com') );
-        }
-
-        # file_download
-        elsif ( $path eq '/download' ) {
-            $res = $req->file_download_response( 'text/csv', 'a;b;c',
-                'alphabet.csv' );
-        }
-
-        # no_content
-        elsif ( $path eq '/no-content' ) {
-            $res = $req->no_content_response;
-        }
-
-        # transparent_gif
-        elsif ( $path eq '/pixel' ) {
-            $res = $req->transparent_gif_response;
-        }
-
+            # transparent_gif
+            '/pixel'              => [ 'transparent_gif_response' ],
+        );
+        my ($method, @args) = @{ $dispatch{$path} };
+        my $res = $req->$method(@args);
         return $res->finalize;
     };
 };

@@ -92,6 +92,7 @@ tracking URL.
 Thanks to
 
 - [validad.com](https://www.validad.com/) for supporting Open Source.
+- [choroba](https://github.com/choroba) for improvments to the test suite.
 
 # AUTHOR
 

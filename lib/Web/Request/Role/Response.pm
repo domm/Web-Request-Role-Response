@@ -159,5 +159,7 @@ Thanks to
 
 L<validad.com|https://www.validad.com/> for supporting Open Source.
 
+=item * L<choroba|https://github.com/choroba> for improvments to the test suite.
+
 =back
 
